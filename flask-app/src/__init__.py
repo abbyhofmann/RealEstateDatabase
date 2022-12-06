@@ -19,19 +19,19 @@ def create_app():
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'classicmodels'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'real_estate_db'  # Change this to your DB name
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
     
     # Import the various routes
-    from src.views import views
-    from src.customers.customers import customers
-    from src.products.products  import products
+    from src.prospectiveBuyers.buyers import prospectiveBuyers
+    from src.agents.agents import agents
+    from src.brokers.brokers import brokers
 
     # Register the routes that we just imported so they can be properly handled
-    app.register_blueprint(views,       url_prefix='/classic')
-    app.register_blueprint(customers,   url_prefix='/classic')
-    app.register_blueprint(products,    url_prefix='/classic')
+    app.register_blueprint(prospectiveBuyers, url_prefix='/buyers')
+    app.register_blueprint(agents, url_prefix='/agents')
+    app.register_blueprint(brokers, url_prefix='/brokers')
 
     return app
