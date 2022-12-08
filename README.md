@@ -1,6 +1,6 @@
 # MySQL + Flask Real Estate Database Project
 
-##Project Description
+## Project Description
 For this project, I designed a database to be utilized by a real estate team to manage their daily tasks 
 and responsibilities. As a starting point, I had three primary users in mind - a prospective buyer, an agent, 
 and a brokerage owner. The Flask application currently supports the following actions for each user: 
@@ -22,7 +22,7 @@ Agent:
 - view the appointments of the user logged in 
 
 
-##Project Inspiration
+## Project Inspiration
 One of my personal interests is real estate. I love looking at homes for sale and 
 apartments for rent in my free time, and I have always been intrigued by the work 
 real estate agents do on a daily basis, as well as the interactions they have with 
@@ -31,7 +31,7 @@ real estate management database product would be an interesting and relevant app
 of concepts from the CS3200 course that would simultaneously allow me to explore 
 the essential activities of a real estate firm. 
 
-##Future Expansion
+## Future Expansion
 To further build upon this project, I would implement more routes for 
 each persona to better capture all the interactions within a real 
 estate firm. For instance, I would add a route to the buyer that would 
@@ -40,7 +40,7 @@ the broker that would allow them to calculate the net sales of each agent
 in the brokerage. Doing so would increase the applicability of the product. 
 
 
-##Prerequisites 
+## Prerequisites 
 Python <br>
 MySQL <br>
 Flask <br>
@@ -48,7 +48,7 @@ Docker Desktop <br>
 ngrok <br>
 
 
-##Setup and Run 
+## Setup and Run 
 1. Clone this repository. 
 2. Open Docker Desktop 
 3. In a terminal or command prompt, navigate to the folder with the `docker-compose.yml` file. 
@@ -60,7 +60,7 @@ ngrok <br>
 9. Deploy the "Agent View" AppSmith application for a mock UI of what an agent would see, and 
 deploy the "Buyer View" application for a mock UI of what a buyer would see. 
 
-##File Structure 
+## File Structure 
 `real_estate_bootstrap.sql`
 - contains SQL queries for creating the database, user, and tables
 - contains queries inserting sample data into the tables 
