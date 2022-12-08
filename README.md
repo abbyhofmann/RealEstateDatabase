@@ -1,6 +1,5 @@
 # MySQL + Flask Real Estate Database Project
 
-
 ###Project Description
 For this project, I designed a database to be utilized by a real estate team to manage their daily tasks 
 and responsibilities. As a starting point, I had three primary users in mind - a prospective buyer, an agent, 
@@ -62,3 +61,34 @@ ngrok <br>
 deploy the "Buyer View" application for a mock UI of what a buyer would see. 
 
 ###File Structure 
+`real_estate_bootstrap.sql`
+- contains SQL queries for creating the database, user, and tables
+- contains queries inserting sample data into the tables 
+
+`agents.py`
+- contains initialization of agent blueprint
+- contains routes associated with agent persona
+
+`brokers.py`
+- contains initialization of broker blueprint
+- contains routes associated with broker persona
+
+`buyers.py`
+- contains initialization of buyer blueprint
+- contains routes associated with prospective buyer persona
+
+`__init__.py`
+- contains setup and configuration of the Flask application 
+- blueprints are registered and url prefixes are specified here
+
+`requirements.txt`
+- contains requirements for running the application 
+
+`app.py`
+- contains creation of application object 
+
+`Dockerfile`
+- contains instructions and specifications for building the container image 
+
+`docker-compose.yml`
+- contains information to configure containers 
