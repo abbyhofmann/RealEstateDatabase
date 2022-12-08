@@ -290,5 +290,57 @@ def get_agent_listings():
         return the_response
 
 
-# TODO
-# - add favorited listings to buyer details
+# Register a new active listing
+@agents.route('/new_listing', methods=['GET', 'POST'])
+def register_listing():
+    cursor = db.get_db().cursor()
+    if request.method == 'POST':
+        agent = request.form['agentID']
+        status = request.form['status']
+        askingPrice = request.form['asking_price']
+        daysOnMarket = request.form['days']
+        listingDate = request.form['list_date']
+        ownerFirstName = request.form['owner_first_name']
+        ownerLastName = request.form['owner_last_name']
+        ownerEmail = request.form['owner_email']
+        ownerPhone = request.form['owner_phone']
+        street = request.form['street']
+        city = request.form['city']
+        state = request.form['state']
+        zipCode = request.form['zip']
+        beds = request.form['beds']
+        baths = request.form['baths']
+        yearBuilt = request.form['year_built']
+        sqFoot = request.form['sq_foot']
+
+        # insert listing into active listing
+        cursor.execute('INSERT INTO activeListing (status, askingPrice, daysOnMarket, listingDate, agentID) '
+                       'VALUES (%s, %s, %s, %s, %s)', (status, askingPrice, daysOnMarket, listingDate, agent))
+        db.get_db().commit()
+
+        # get listing id from new active listing entry
+        cursor.execute('SELECT listingID from activeListing ORDER BY listingID')
+        id = cursor.fetchall()[cursor.rowcount - 1][0]
+
+        # insert property owner
+        cursor.execute('INSERT INTO propertyOwner (firstName, lastName, email, phoneNumber, listingID, agentID)'
+                       'VALUES (%s, %s, %s, %s, %s, %s)', (ownerFirstName, ownerLastName, ownerEmail, ownerPhone, id, agent))
+        db.get_db().commit()
+
+        # insert property details
+        cursor.execute('INSERT INTO propertyDetails (street, city, state, zip, beds, baths, yearBuilt, squareFootage, listingID) '
+                       'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)', (street, city, state, zipCode, beds, baths, yearBuilt,
+                                                                       sqFoot, id))
+        db.get_db().commit()
+
+        cursor.execute('select * from activeListing')
+        row_headers = [x[0] for x in cursor.description]
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(dict(zip(row_headers, row)))
+
+        the_response = make_response(jsonify(json_data))
+        the_response.status_code = 200
+        the_response.mimetype = 'application/json'
+        return the_response

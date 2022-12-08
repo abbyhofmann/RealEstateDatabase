@@ -17,22 +17,25 @@ def get_agents():
 
         # alphabetical sorting
         if selected_sort_option == 'alphabetical':
-            cursor.execute('SELECT * FROM agent ORDER BY lastName')
+            cursor.execute('SELECT * FROM agent JOIN areaOfExpertise on agent.agentID = areaOfExpertise.agentID \
+            ORDER BY lastName')
             all_agents = cursor.fetchall()
 
         # sort by most experienced agents
         elif selected_sort_option == 'most-exp':
-            cursor.execute('SELECT * FROM agent ORDER BY yearsOfExperience DESC')
+            cursor.execute('SELECT * FROM agent JOIN areaOfExpertise on agent.agentID = areaOfExpertise.agentID \
+            ORDER BY yearsOfExperience DESC')
             all_agents = cursor.fetchall()
 
         # sort by least experienced agents
         elif selected_sort_option == 'least-exp':
-            cursor.execute('SELECT * FROM agent ORDER BY yearsOfExperience')
+            cursor.execute('SELECT * FROM agent JOIN areaOfExpertise on agent.agentID = areaOfExpertise.agentID \
+            ORDER BY yearsOfExperience')
             all_agents = cursor.fetchall()
 
         # default sort ordering
         else:
-            cursor.execute('SELECT * FROM agent')
+            cursor.execute('SELECT * FROM agent JOIN areaOfExpertise on agent.agentID = areaOfExpertise.agentID')
             all_agents = cursor.fetchall()
 
         row_headers = [x[0] for x in cursor.description]
