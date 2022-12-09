@@ -1,5 +1,8 @@
 # MySQL + Flask Real Estate Database Project
 
+## Final Video Link 
+https://youtu.be/nUIcu2umjnI
+
 ## Project Description
 For this project, I designed a database to be utilized by a real estate team to manage their daily tasks 
 and responsibilities. As a starting point, I had three primary users in mind - a prospective buyer, an agent, 
